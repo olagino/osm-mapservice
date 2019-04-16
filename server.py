@@ -117,7 +117,7 @@ def deletePoint(pointID):
     saveAll()
     return "error"
 
-app.run()
+#app.run()
 
-#ws = pywsgi.WSGIServer(('', 5000), app)
-#ws.serve_forever()
+ws = pywsgi.WSGIServer(('', 8080), app)
+ws.serve_forever()
