@@ -1,0 +1,50 @@
+<head>
+  <title>OSM-Pointcloud</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='leaflet.css') }}" />
+  <script src="{{ url_for('static', filename='jquery-3.3.1.min.js')}}"></script>
+</head>
+<body>
+<nav class="navbar navbar-light bg-light navbar-expand-md">
+  <a class="navbar-brand">OSM-Pointcloud</a>
+  <input class="form-control mr-sm-2" type="text" placeholder="Pointcloud-Code eingeben…" aria-label="Cloud-Group-ID" id="cloudGroup">
+  <a class="btn btn-success my-2 my-sm-0" id="cgid-refresh">aktualisieren</a>
+  <a class="btn btn-outline-secondary my-2 my-sm-0" id="cgid-share">teilen</a>
+</nav>
+
+<div class="container-fluid">
+<div class="row">
+  <div class="col-md-3" id="scrollable">
+    <h4>Suche</h4>
+    <form class="form">
+      <input class="form-control mr-sm-2" type="text" placeholder="Suchbegriff eingeben…" aria-label="Suchen" id="searchboxbox">
+      <a class="btn btn-outline-success my-2 my-sm-0" id="searchboxenter">Suche starten</a>
+    </form>
+    <h4>Punktewolke
+      <span class="badge badge-secondary" id="point_cloud_count"></span>
+      <button class="btn btn-sm btn-outline-primary" onclick="refreshCloud()" type="button" >aktualisieren</button>
+    </h4>
+    <table id="point_cloud" class="table table-hover table-sm">
+      <thead>
+        <tr>
+          <th width="15px"></th>
+          <th>Name</th>
+          <th>Ort</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-9">
+     <div id="big-leaflet"></div>
+  </div>
+</div>
+</div>
+<script src="{{ url_for('static', filename='leaflet.js')}}"></script>
+<script src="{{ url_for('static', filename='colorRotate_new.js')}}"></script>
+<script src="{{ url_for('static', filename='main.js')}}"></script>
+</body>
