@@ -25,13 +25,30 @@ body, html {
   border-radius: 5px;
 }
 
-.svg-marker {
+/* .svg-marker {
     cursor:inherit;
 }
 .svg-marker div.foo {
   width: 30px;
   height: 30px;
   border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+  background-color: blue;
+  transform: rotate(-225deg);
+  position: relative;
+  /* left: -17px; */
+  left: -50%;
+  /* top: -40px; */
+  top: -125%;
+  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.55);
+} */
+
+ .svg-marker {
+    cursor:inherit;
+}
+.svg-marker div.foo {
+  width: 8px;
+  height: 8px;
+  border-radius: 50% 50%;
   background-color: blue;
   transform: rotate(-225deg);
   position: relative;
