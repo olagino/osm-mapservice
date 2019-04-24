@@ -1,4 +1,5 @@
 var leafmap = L.map('big-leaflet').setView([51.3, 10.4], 6);
+var tiles = "";
 var markerList = [];
 var searchMarker = L.marker([90, 0.0],{icon: leafmapMarker});
 var searchMarkerLatlon = new L.LatLng(90,0);
@@ -74,7 +75,7 @@ function refreshCloud() {
         count += 1;
         var pt = data[point];
         if(markerList.hasOwnProperty([pt["id"]]) == false) {
-          var set = {"lat": pt["lat"], "long": pt["long"], "color": pt["color"], "place": pt["place"], "name": pt["name"], "desc": pt["description"]};
+          var set = {"lat": pt["lat"], "long": pt["long"], "color": pt["color"], "place": pt["place"], "name": pt["name"], "desc": pt["desc"]};
           addMarker(pt["id"], set);
         }
         tableString += "<tr onclick=\"showMarker('" + pt["id"] + "')\" id=\"table_marker_" + pt["id"] + "\">";
@@ -153,6 +154,20 @@ function removeMarkerFully(id) {
   });
 }
 
+function changeMap(url) {
+  // L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', {
+  tiles = L.tileLayer(url, {
+    attribution: '',
+    maxZoom: 20
+  }).addTo(leafmap);
+}
+
+function changeMapEvent() {
+  var url = $("#changeMapEventBox option:selected").val();
+  changeMap(url);
+  console.log("CHANGE" + url)
+}
+
 window.onload = function() {
   $("#searchboxbox").keypress(function (e) {
     if (e.which == 13) {
@@ -190,11 +205,11 @@ window.onload = function() {
   }
   $("#cloudGroup").val(cloudGroup);
 
-  // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
-    attribution: '',
-    maxZoom: 20
-  }).addTo(leafmap);
+  changeMap("http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png");
+  // tiles = L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+  //   attribution: '',
+  //   maxZoom: 20
+  // }).addTo(leafmap);
 
   leafmap.on("click", moveMarkerMapclick);
   refreshCloud();

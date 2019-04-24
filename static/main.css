@@ -25,23 +25,6 @@ body, html {
   border-radius: 5px;
 }
 
-/* .svg-marker {
-    cursor:inherit;
-}
-.svg-marker div.foo {
-  width: 30px;
-  height: 30px;
-  border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-  background-color: blue;
-  transform: rotate(-225deg);
-  position: relative;
-  /* left: -17px; */
-  left: -50%;
-  /* top: -40px; */
-  top: -125%;
-  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.55);
-} */
-
  .svg-marker {
     cursor:inherit;
 }
@@ -52,13 +35,20 @@ body, html {
   background-color: blue;
   transform: rotate(-225deg);
   position: relative;
-  /* left: -17px; */
   left: -50%;
-  /* top: -40px; */
   top: -125%;
-  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.55);
+  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.35);
 }
 
-#scrollable {
-  overflow-y: auto;
+.scrollable {
+  overflow: scroll;
+  display: block;
+  height: 70vh;
+  width: calc(100% + 20px);
+  margin-right: -20px;
+}
+
+
+table#point_cloud tbody td {
+  cursor: pointer;
 }

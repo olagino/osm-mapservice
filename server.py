@@ -75,7 +75,7 @@ def listPointsInGroup(GroupName):
 
 @app.route("/api/point/add/<properties>")
 def addPoint(properties):
-    properties = properties.split("&")
+    properties = properties.strip("&").split("&")
     props = {}
     for prop in properties:
         key = prop.split("=")[0]
@@ -94,7 +94,8 @@ def addPoint(properties):
     if g.country != None:
         place += g.country
 
-    data = {"id": rand(), "lat": props["lat"], "long": props["long"], "color": props["color"], "name": props["name"], "place": place, "desc": props["desc"]}
+    data = {"id": rand(), "lat": props["lat"], "long": props["long"], "color": props["color"], "name": props["name"], "place": place}
+    data["desc"] = props['desc']
     if props["group"] not in database:
         database[props["group"]] = {}
     database[props["group"]][data["id"]] = data

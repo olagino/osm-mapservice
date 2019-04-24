@@ -8,16 +8,33 @@
   <script src="{{ url_for('static', filename='jquery-3.3.1.min.js')}}"></script>
 </head>
 <body>
-<nav class="navbar navbar-light bg-light navbar-expand-md">
-  <a class="navbar-brand">OSM-Pointcloud</a>
-  <input class="form-control mr-sm-2" type="text" placeholder="Pointcloud-Code eingeben…" aria-label="Cloud-Group-ID" id="cloudGroup">
-  <a class="btn btn-success my-2 my-sm-0" id="cgid-refresh">aktualisieren</a>
-  <a class="btn btn-outline-secondary my-2 my-sm-0" id="cgid-share">teilen</a>
+<nav class="navbar navbar-light bg-light navbar-expand-sm">
+  <!-- <div class="col-md-6"> -->
+    <a class="navbar-brand">OSM-Pointcloud</a>
+    <div class="input-group">
+      <input class="form-control" type="text" placeholder="Pointcloud-Code eingeben…" aria-label="Cloud-Group-ID" id="cloudGroup">
+      <div class="input-group-append">
+        <a class="btn btn-success my-2 my-sm-0" id="cgid-refresh">aktualisieren</a>
+        <a class="btn btn-outline-secondary my-2 my-sm-0" id="cgid-share">teilen</a>
+      </div>
+    </div>
+  <span style="width: 25px"></span>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Kartenstil auswählen</span>
+    </div>
+    <select class="form-control" id="changeMapEventBox" onchange="changeMapEvent()">
+      <option value="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png">OSM General (slow)</option>
+      <option value="https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png">OSM Germany (fast, pale)</option>
+      <option value="https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png">OSM France (fast, colorful)</option>
+      <option value="http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png">Stamen (black/white)</option>
+    </select>
+  </div>
 </nav>
 
 <div class="container-fluid">
 <div class="row">
-  <div class="col-md-3" id="scrollable">
+  <div class="col-md-3" >
     <h4>Suche</h4>
     <form class="form">
       <input class="form-control mr-sm-2" type="text" placeholder="Suchbegriff eingeben…" aria-label="Suchen" id="searchboxbox">
@@ -27,7 +44,8 @@
       <span class="badge badge-secondary" id="point_cloud_count"></span>
       <button class="btn btn-sm btn-outline-primary" onclick="refreshCloud()" type="button" >aktualisieren</button>
     </h4>
-    <table id="point_cloud" class="table table-hover table-sm">
+    <div class="scrollable">
+    <table id="point_cloud" class="table table-hover table-sm ">
       <thead>
         <tr>
           <th width="15px"></th>
@@ -38,6 +56,7 @@
       <tbody>
       </tbody>
     </table>
+    </div>
   </div>
   <div class="col-md-9">
      <div id="big-leaflet"></div>
